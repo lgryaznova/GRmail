@@ -82,6 +82,7 @@ To confirm click on "Delete" button again.',
 name for region {1} or click "Save" again to save as {0}.',
     'amend_regname_confirm': 'Are you sure you want to edit the name \
 of the region {0}? Click "Save" again to confirm.\n\n',
+    'use_middlename': 'Use middlenames',
 }
 
 with open('labels_en.pkl', 'wb') as f:
@@ -129,7 +130,7 @@ text_en = {
     'subjText': 'letter from {0}: {1}',
     'subjTextRegion': 'letter from {0} ({1}): {2}',
     'urgent': 'URGENT ',
-    'due': '(due ',
+    'due': '(due {0}) ',
     'ourReply': 'Dear {0},\n\nWe received a letter from the Ministry \
 concerning an appeal by {1} ({2}) about {3}. Our department is \
 writing a reply.\n\nPlease send us information on \
