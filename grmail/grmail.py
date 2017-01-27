@@ -526,7 +526,7 @@ class MainWindow(StandardTab):
 
         # append due date if any
         deadline = self.process_date(self.deadline.get())
-        if deadline:
+        if deadline is not None:
             duedate = get_duedate(deadline)
             subject = (text['due'].format(datetime.strftime(duedate, '%d.%m'))
                        + subject)
@@ -1318,7 +1318,7 @@ class AutocompleteCombobox(ttk.Combobox):
 
 
 # import labels (en for English, ru for Russian)
-with open(resource_path('labels_ru.pkl'), 'rb') as datafile:
+with open(resource_path('labels_en.pkl'), 'rb') as datafile:
     labels = pickle.load(datafile)
 
 # import users
