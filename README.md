@@ -12,7 +12,7 @@ GRmail works on Windows 7 and MacOS Sierra (the latter reveals some GUI imperfec
 
 ### Miscellaneous
 
-**IMPORTANT NOTE** Unfortunately, at the moment sending emails functionality is not yet implemented. Therefore the app only generates emails and the 'Send' button copies the subject and the body of the email into the clipboard. Sending emails directly from the app will be hopefully implemented in next releases.
+To start the app use *start.py*.
 
 File *example_data.py* is a script to produce example data for the app and pack it into pickle files. It is not needed for the work of the app. We include it in the repo as it demonstrates data structures used by GRmail app.
 
