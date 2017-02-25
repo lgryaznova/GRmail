@@ -22,6 +22,16 @@ Email templates use first name and middle name due to the fact that the app was 
 
 ### Changelog
 
+*ver.1.03*
+
+Sending emails through MS Outlook is now working. The application uses the MS Outlook account found on the local machine to send the email. If not found, raises the error and copies the topic and the body of the email for manual processing. Sending via alternative servers will be implemented in next releases.
+
+Internal structure of the project is revised. Now start.py is used to launch the app. Settings tab is added; however, it's logic is not added yet (to be accomplished in the next release).
+
+*ver.1.02*
+
+Slight improvements to the code, PEP8 compliance.
+
 *ver.1.01*
 
 Added AddressBook tab with all functionality to edit, add or delete data (users, departments, regions). Editing email templates will be added later on. Since now only one folder bundle can be used with PyInstaller, otherwise the updates in data will not be stored.
