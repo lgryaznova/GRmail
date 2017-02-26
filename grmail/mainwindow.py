@@ -4,7 +4,9 @@ MainWindow class
 import tkinter as tk
 import tkinter.ttk as ttk
 import tkinter.filedialog as fdialog
-import win32com.client
+import sys
+if sys.platform == 'win32':
+    import win32com.client
 import re
 import os
 from datetime import datetime, timedelta, date
@@ -12,6 +14,7 @@ from base_cls import StandardTab
 from autocomplete import AutocompleteCombobox
 from root import root
 from helper import labels, users, dept, regions, text, process_region
+from helper import FONT_M, FONT_S, FONT_BOLD
 
 class MainWindow(StandardTab):
     """
@@ -21,7 +24,7 @@ class MainWindow(StandardTab):
         super().__init__(master)
         self.grid(row=0, column=0)
         self._current_msg = None
-        self._last_msg =[]
+        self._last_msg = []
         self.create_widgets()
 
     def create_widgets(self):
@@ -43,7 +46,7 @@ class MainWindow(StandardTab):
         self.username_label.grid(row=0, column=0, sticky='en', pady=2, padx=2)
         self.username = ttk.Combobox(
             self.left_pane, values=users.keys(), state='readonly',
-            font=('Arial', 13), postcommand=lambda: self.update_list(
+            font=FONT_M, postcommand=lambda: self.update_list(
                 str(self.username), users.keys()))
         self.username.grid(row=0, column=1, sticky='news', pady=2)
 
@@ -74,14 +77,14 @@ class MainWindow(StandardTab):
         self.customer_label = ttk.Label(self.left_pane,
                                         text=labels['customer'])
         self.customer_label.grid(row=4, column=0, sticky='en', pady=2, padx=2)
-        self.customer = ttk.Entry(self.left_pane, font=('Arial', 13))
+        self.customer = ttk.Entry(self.left_pane, font=FONT_M)
         self.customer.grid(row=4, column=1, sticky='news', pady=2)
 
         # enter region
         self.region_label = ttk.Label(self.left_pane, text=labels['region'])
         self.region_label.grid(row=5, column=0, sticky='en', pady=2, padx=2)
         self.region = AutocompleteCombobox(
-            self.left_pane, font=('Arial', 13),
+            self.left_pane, font=FONT_M,
             postcommand=lambda: self.update_list(str(self.region),
                                                  regions.keys()))
         self.region.set_completion_list(regions.keys())
@@ -92,14 +95,14 @@ class MainWindow(StandardTab):
         self.deadline_label = ttk.Label(self.left_pane,
                                         text=labels['deadline'])
         self.deadline_label.grid(row=6, column=0, sticky='e', pady=2, padx=2)
-        self.deadline = ttk.Entry(self.left_pane, font=('Arial', 13))
+        self.deadline = ttk.Entry(self.left_pane, font=FONT_M)
         self.deadline.grid(row=6, column=1, sticky='news', pady=2)
 
         # enter reason
         self.reason_label = ttk.Label(self.left_pane, text=labels['reason'])
         self.reason_label.grid(row=7, column=0, sticky='en', pady=2, padx=2)
         self.reason = tk.Text(self.left_pane, height=2, width=30, bd=1,
-                              highlightcolor='#6fa8d8', font=('Arial', 13),
+                              highlightcolor='#6fa8d8', font=FONT_M,
                               wrap='word', highlightbackground='#bcbcbc')
         self.reason.grid(row=7, column=1, sticky='news', pady=2)
 
@@ -119,7 +122,7 @@ class MainWindow(StandardTab):
         self.browse_button.grid(row=8, column=1, sticky='en', pady=2)
 
         # place to display error messages if any
-        self.errors = ttk.Label(self.left_pane, font=('Arial', 13, 'bold'),
+        self.errors = ttk.Label(self.left_pane, font=FONT_BOLD,
                                 foreground='red', wraplength=400)
         self.errors['text'] = '\n'
         self.errors.grid(row=9, column=0, columnspan=2, pady=10)
@@ -141,27 +144,27 @@ class MainWindow(StandardTab):
         # To:
         self.to_label = ttk.Label(self.right_pane, text=labels['to'])
         self.to_label.grid(row=0, column=2, sticky='en', pady=2, padx=2)
-        self.addr_to = ttk.Entry(self.right_pane, font=('Arial', 11))
+        self.addr_to = ttk.Entry(self.right_pane, font=FONT_S)
         self.addr_to.grid(row=0, column=3, columnspan=2, sticky='news', pady=2)
 
         # CC:
         self.cc_label = ttk.Label(self.right_pane, text=labels['cc'])
         self.cc_label.grid(row=1, column=2, sticky='en', pady=2, padx=2)
-        self.addr_cc = ttk.Entry(self.right_pane, font=('Arial', 11))
+        self.addr_cc = ttk.Entry(self.right_pane, font=FONT_S)
         self.addr_cc.grid(row=1, column=3, columnspan=2, sticky='news', pady=2)
 
         # Subj:
         self.subj_label = ttk.Label(self.right_pane, text=labels['subject'])
         self.subj_label.grid(row=2, column=2, sticky='en', pady=2, padx=2)
         self.subj = tk.Text(self.right_pane, height=2, width=40, bd=1,
-                            highlightcolor='#6fa8d8', font=('Arial', 11),
+                            highlightcolor='#6fa8d8', font=FONT_S,
                             wrap='word', highlightbackground='#bcbcbc')
         self.subj.grid(row=2, column=3, rowspan=2, columnspan=2,
                        sticky='news', pady=2)
 
         # body:
         self.body = tk.Text(self.right_pane, height=15, width=50, bd=1,
-                            highlightcolor='#6fa8d8', font=('Arial', 11),
+                            highlightcolor='#6fa8d8', font=FONT_S,
                             wrap='word', highlightbackground='#bcbcbc')
         self.body.grid(row=4, column=2, columnspan=2, rowspan=7,
                        sticky='news', pady=2)

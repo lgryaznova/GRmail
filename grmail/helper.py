@@ -6,6 +6,21 @@ import os
 import sys
 import re
 
+# different fonts and Save/Cancel button width for different OS
+if sys.platform == 'darwin':
+    BTN_WIDTH = 14
+    FONT_M = ('Arial', 15, 'normal')
+    FONT_S = ('Arial', 14, 'normal')
+    FONT_ITAL = ('Arial', 13, 'italic')
+    FONT_BOLD = ('Arial', 15, 'bold')
+else:
+    BTN_WIDTH = 15
+    FONT_M = ('Arial', 13, 'normal')
+    FONT_S = ('Arial', 11, 'normal')
+    FONT_ITAL = ('Arial', 11, 'italic')
+    FONT_BOLD = ('Arial', 13, 'bold')
+
+
 def resource_path(relative_path):
     """
     Get absolute path to resource, works for dev and for PyInstaller

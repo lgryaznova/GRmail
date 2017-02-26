@@ -2,6 +2,7 @@
 Base tkinter classes (Application, StandardTab)
 """
 import tkinter.ttk as ttk
+import sys
 
 class Application(ttk.Notebook):
     """

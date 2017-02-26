@@ -8,6 +8,7 @@ from base_cls import StandardTab
 from data_cls import User, Department, Region
 from helper import labels, users, dept, regions
 from helper import resource_path, logic_decorator
+from helper import BTN_WIDTH, FONT_M, FONT_S
 
 class AddressBook(StandardTab):
     """
@@ -46,7 +47,7 @@ class AddressBook(StandardTab):
         self.username_label.grid(row=0, column=0, sticky='en', pady=5, padx=2)
         self.username = ttk.Combobox(
             self.left_pane, values=users.keys(),
-            state='readonly', font=('Arial', 13), width=25,
+            state='readonly', font=FONT_M, width=25,
             postcommand=lambda: self.update_list(str(self.username),
                                                  users.keys()))
         self.username.grid(row=0, column=1, sticky='news', pady=5)
@@ -69,7 +70,7 @@ class AddressBook(StandardTab):
                                      pady=5, padx=2)
         self.cf_directors = ttk.Combobox(
             self.left_pane, values=dept.keys(),
-            state='readonly', font=('Arial', 13))
+            state='readonly', font=FONT_M)
         self.cf_directors.grid(row=2, column=1, sticky='news', pady=5)
         self.cf_directors_button = ttk.Button(
             self.left_pane, width=2, image=self.edit_image,
@@ -81,7 +82,7 @@ class AddressBook(StandardTab):
         self.region_label = ttk.Label(self.left_pane, text=labels['region'])
         self.region_label.grid(row=3, column=0, sticky='en', pady=5, padx=2)
         self.region = AutocompleteCombobox(
-            self.left_pane, font=('Arial', 13),
+            self.left_pane, font=FONT_M,
             postcommand=lambda: self.update_list(str(self.region),
                                                  regions.keys()))
         self.region.set_completion_list(regions.keys())
@@ -112,16 +113,16 @@ class AddressBook(StandardTab):
         # edit user
         self.username_edit_label = ttk.Label(self.right_pane,
                                              text=labels['fullname'])
-        self.username_edit = ttk.Entry(self.right_pane, font=('Arial', 13))
+        self.username_edit = ttk.Entry(self.right_pane, font=FONT_M)
 
         self.email_label = ttk.Label(self.right_pane, text=labels['email'])
-        self.email = ttk.Entry(self.right_pane, font=('Arial', 13))
+        self.email = ttk.Entry(self.right_pane, font=FONT_M)
 
         self.user_signature_label = ttk.Label(self.right_pane,
                                               text=labels['user_signature'])
         self.user_signature = tk.Text(
             self.right_pane, height=10, width=38, bd=1,
-            highlightcolor='#6fa8d8', font=('Arial', 11), wrap='word',
+            highlightcolor='#6fa8d8', font=FONT_S, wrap='word',
             highlightbackground='#bcbcbc')
         self.scroll_signature = ttk.Scrollbar(self.right_pane)
         self.scroll_signature['command'] = self.user_signature.yview
@@ -130,21 +131,21 @@ class AddressBook(StandardTab):
         # edit directors
         self.lastname_label = ttk.Label(self.right_pane,
                                         text=labels['lastname'])
-        self.lastname = ttk.Entry(self.right_pane, font=('Arial', 13),
+        self.lastname = ttk.Entry(self.right_pane, font=FONT_M,
                                   width=35)
 
         self.firstname_label = ttk.Label(self.right_pane,
                                          text=labels['firstname'])
-        self.firstname = ttk.Entry(self.right_pane, font=('Arial', 13))
+        self.firstname = ttk.Entry(self.right_pane, font=FONT_M)
 
         self.middlename_label = ttk.Label(self.right_pane,
                                           text=labels['middlename'])
-        self.middlename = ttk.Entry(self.right_pane, font=('Arial', 13))
+        self.middlename = ttk.Entry(self.right_pane, font=FONT_M)
 
         # edit region
         self.region_label = ttk.Label(self.right_pane, text=labels['region'])
         self.region_edit = tk.Text(
-            self.right_pane, height=2, width=35, bd=1, font=('Arial', 13),
+            self.right_pane, height=2, width=35, bd=1, font=FONT_M,
             highlightcolor='#6fa8d8', wrap='word',
             highlightbackground='#bcbcbc')
         self.region_type = tk.IntVar()
@@ -166,9 +167,9 @@ class AddressBook(StandardTab):
 
         # common buttons
         self.save_button = ttk.Button(
-            self.right_pane, text=labels['save'], width=15)
+            self.right_pane, text=labels['save'], width=BTN_WIDTH)
         self.cancel_button = ttk.Button(
-            self.right_pane, text=labels['cancel'], width=15)
+            self.right_pane, text=labels['cancel'], width=BTN_WIDTH)
         self.delete_button = ttk.Button(
             self.right_pane, text=labels['delete'], width=20)
 
