@@ -2,17 +2,17 @@
 
 ### Overview
 
-GRmail is an application intended to generate standard emails for specified occasions. It was designed mostly for my personal purposes to automate my everyday activities, save my time and efforts, and to assist my colleagues with the same tasks as well. Another aim was to practice programming in Python, designing a simple cross-platform app with GUI and making it work on a Windows machine without admin privileges and Python installed.
+GRmail is an application intended to generate standard emails for specified occasions. It was designed mostly for my personal purposes to automate my everyday activities, save my time and efforts, and to assist my colleagues with the same tasks as well. Another aim was to practice programming in Python, designing a simple cross-platform app with GUI and making it work on a Windows machine without admin privileges and Python 3 installed.
 
 ### Requirements
 
 GRmail works on Windows 7 and MacOS Sierra (the latter reveals some GUI imperfections not affecting functionality; these will be fixed in later releases). To use as a script, one must have Python 3 installed to execute it. It is also suitable for compilation into a Windows executive with PyInstaller (ver.3.2.1 was successfully used by the author), both as a one file bundle or one folder bundle, since all the necessary details of transformation are taken into consideration.
 
+To start the app use *start.py*.
+
 **Notes on PyInstaller usage:** One file bundle by PyInstaller would work but it would not store any amendments to the data. To be able to save changes to the data permanently, use one folder bundle.
 
 ### Miscellaneous
-
-To start the app use *start.py*.
 
 File *example_data.py* is a script to produce example data for the app and pack it into pickle files. It is not needed for the work of the app. We include it in the repo as it demonstrates data structures used by GRmail app.
 
