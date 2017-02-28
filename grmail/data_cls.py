@@ -3,7 +3,7 @@ Data classes
 """
 class DataClass(dict):
     """
-    Base class. For users and regions
+    Base class. For users, departments, and regions
     """
     def __init__(self):
         #self.inner_dict = {}
@@ -15,32 +15,21 @@ class DataClass(dict):
 
     @property
     def current(self):
-        """Gets the current item (user, region)"""
+        """Gets the name of the current item (user, dept, region)"""
         return self._current
 
     @current.setter
     def current(self, item):
         self._current = item
 
-    # def get_item(self, key):
-    #     """Returns a specified item"""
-    #     return self.inner_dict[key]
-
-    # def all_items(self):
-    #     """Returns a sorted list of all items (users or regions)"""
-    #     return sorted(self.inner_dict.keys())
-
-    # def delete_item(self, key):
-    #     """Deletes an item"""
-    #     if key is not None:
-    #         del self.inner_dict[key]
-
     def update_item(self, class_, key, *args, **kwargs):
         """
-        Adds or updates an item of a dictionary of users or regions.
+        Adds or updates an item of a dictionary of users, departments
+        or regions. Raises assertion error if the key already exists
+        in the dictionary or if it does not match with the current key.
 
-        class_ - class (User or Region)
-        key - string, name of user or region, key in the dictionary
+        class_ - class (User, Department or Region)
+        key - string, name of user, dept or region, key in the dictionary
         """
         assert key == self._current or key not in self.keys()
         # key (name) is not changed
@@ -55,9 +44,10 @@ class DataClass(dict):
     def force_update(self, class_, key, *args, **kwargs):
         """
         Force updates an item of a dictionary of users or regions.
+        Used after confirmation click in GUI.
 
-        class_ - class (User or Region)
-        key - string, name of user or region, key in the dictionary
+        class_ - class (User, Department or Region)
+        key - string, name of user, dept or region, key in the dictionary
         """
         # edit section only
         if self._current is not None:
@@ -70,7 +60,7 @@ class DataClass(dict):
         Returns firstname or firstname+middlename of the specified
         user depending on the setting.
 
-        key - string, name of region, key of the internal dict
+        key - string, key of the internal dict
         flag - boolean, True if middlename is used, otherwise False
         """
         if flag:
@@ -209,7 +199,7 @@ class Departments(DataClass):
         Adds or updates an item of a dictionary of departments.
         Department names remain unchanged.
 
-        class_ - class (User or Region)
+        class_ - class (User, Department or Region)
         key - string, name of department, key in the dictionary
         """
         self[key].update(*args, **kwargs)
@@ -297,9 +287,9 @@ class Regions(DataClass):
     def update_item(self, class_, key, *args, **kwargs):
         """
         Adds or updates an item of a dictionary of regions.
-        Request confirmation if the region's name is to be changed.
+        Requests confirmation if the region's name is to be changed.
 
-        class_ - class (User or Region)
+        class_ - class (User, Department or Region)
         key - string, name of region, key in the dictionary
         """
         assert key == self._current
